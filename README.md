@@ -1,3 +1,7 @@
+# Introduction
+
+I build a streaming data solution for log-based CDC with MySQL, AWS Kinesis, AWS Lambda, and Python.
+
 # Architecture
 
 ![alt text](https://github.com/nashtech-garage/logbasedcdc-aws-kinesis/blob/main/Images/Architecture.PNG)
@@ -14,7 +18,7 @@ CREATE TABLE wages(user_id INTEGER, wage integer, PRIMARY KEY (user_id));
 ![alt text](https://github.com/nashtech-garage/logbasedcdc-aws-kinesis/blob/main/Images/SourceDatabase.PNG)
 
 
-# Step 2: Create a Kinesis stream
+# Step 2: Create an AWS Kinesis stream
 
 ![alt text](https://github.com/nashtech-garage/logbasedcdc-aws-kinesis/blob/main/Images/KinesisStream.PNG)
 
@@ -23,7 +27,16 @@ CREATE TABLE wages(user_id INTEGER, wage integer, PRIMARY KEY (user_id));
 
 ![alt text](https://github.com/nashtech-garage/logbasedcdc-aws-kinesis/blob/main/Images/Python.PNG)
 
+Python script is at Python/mysql_to_kinesis.py
 
-# Step 3: Run Python script to catch the CDC events (insert, update, and delete) from MySQL source database and send events to Kinesis stream
 
-![alt text](https://github.com/nashtech-garage/logbasedcdc-aws-kinesis/blob/main/Images/Python.PNG)
+# Step 4: Create a RDS MySQL target database
+
+![alt text](https://github.com/nashtech-garage/logbasedcdc-aws-kinesis/blob/main/Images/RDSMySQL.PNG)
+
+
+# Step 5: Create an AWS Lambda function with trigger on Kinesis stream and include Python script to consume CDC events to RDS MySQL target database
+
+![alt text](https://github.com/nashtech-garage/logbasedcdc-aws-kinesis/blob/main/Images/Lambda.PNG)
+
+Lambda Python script is at Python/lambda.py
